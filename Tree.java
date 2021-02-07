@@ -65,6 +65,15 @@ public class Tree {
         if (node.leftChild==null && node.rightChild==null ) return 0;
         return 1 + Math.max(getHeightOfTree(node.leftChild),getHeightOfTree(node.rightChild));
     }
+    public int min(){
+        return min(root);
+     }
+    private int min(Node node){
+        if (node.leftChild==null && node.rightChild==null ) return node.value;
+        int left = min(node.leftChild);
+        int right = min(node.rightChild);
+        return Math.min(Math.min(left, right),node.value);
+    }
 
 public static void main(String[] args) {
     Tree tree=new Tree();
@@ -78,6 +87,7 @@ public static void main(String[] args) {
     System.out.println(tree.find(3));
     tree.traversalPreOrder();
     System.out.println("Height of tree is ==>" + tree.getHeightOfTree());
+    System.out.println("Min Value of tree is ==>" + tree.min());
 
     }
 }
